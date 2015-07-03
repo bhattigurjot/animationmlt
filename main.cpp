@@ -5,5 +5,5 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     animationMLT obj;
-    return a.exec();
+    a.exit();
 }
