@@ -15,6 +15,10 @@ animationMLT::animationMLT()
     addKF(pr);
 
     printOutput(pr, an);
+
+    removeKF(an);
+
+    printOutput(pr, an);
 }
 
 void animationMLT::addKF(Properties p)
@@ -25,6 +29,15 @@ void animationMLT::addKF(Properties p)
 
     p.anim_set("foo", 5, 99, 0, mlt_keyframe_smooth);
     qDebug() << "Smooth KF added";
+}
+
+void animationMLT::removeKF(Animation a)
+{
+    // Removes keyframe
+    int position = a.key_get_frame(2);
+
+    a.remove(position);
+    qDebug() << "KF at Index 2 removed";
 }
 
 QString animationMLT::getKFType(Animation a, int index)

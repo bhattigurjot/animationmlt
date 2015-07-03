@@ -13,6 +13,7 @@ public:
     animationMLT();
     void printOutput(Properties p, Animation a);
     void addKF(Properties p);
+    void removeKF(Animation a);
     QString getKFType(Animation a, int index);
 };
 
