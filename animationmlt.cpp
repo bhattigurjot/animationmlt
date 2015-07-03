@@ -21,6 +21,8 @@ animationMLT::animationMLT()
     editKFValue(pr, an, 99, 122);
 
     editKFPosition(pr, an, 50, 49);
+
+    editKFType(pr, an, 120, mlt_keyframe_smooth);
 }
 
 void animationMLT::addKF(Properties p)
@@ -66,6 +68,16 @@ void animationMLT::editKFPosition(Properties p, Animation a, int oldPos, int new
     printString(a);
 }
 
+void animationMLT::editKFType(Properties p, Animation a, int position, mlt_keyframe_type type)
+{
+    // Edits the keyframe type
+    QString oldType = getKFType(a.keyframe_type(position));
+    p.anim_set("foo", p.anim_get_int("foo", position), position, 0, type);
+    qDebug() << "KF at" << position << "type changed from" << oldType << "to" << getKFType(a.keyframe_type(position));
+
+    printString(a);
+}
+
 QString animationMLT::getKFType(Animation a, int index)
 {
     // Returns KF type
@@ -76,6 +88,21 @@ QString animationMLT::getKFType(Animation a, int index)
     if (a.key_get_type(index) == mlt_keyframe_linear)
         KFtype = "= linear";
     if (a.key_get_type(index) == mlt_keyframe_discrete)
+        KFtype = "| discrete";
+
+    return KFtype;
+}
+
+QString animationMLT::getKFType(mlt_keyframe_type type)
+{
+    // Returns KF type
+    QString KFtype;
+
+    if (type == mlt_keyframe_smooth)
+        KFtype = "~ smooth";
+    if (type == mlt_keyframe_linear)
+        KFtype = "= linear";
+    if (type == mlt_keyframe_discrete)
         KFtype = "| discrete";
 
     return KFtype;

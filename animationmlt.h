@@ -17,7 +17,9 @@ public:
     void removeKF(Animation a);
     void editKFValue(Properties p, Animation a, int position, int value);
     void editKFPosition(Properties p, Animation a, int oldPos, int newPos);
+    void editKFType(Properties p, Animation a, int position, mlt_keyframe_type type);
     QString getKFType(Animation a, int index);
+    QString getKFType(mlt_keyframe_type type);
 };
 
 #endif // ANIMATIONMLT
