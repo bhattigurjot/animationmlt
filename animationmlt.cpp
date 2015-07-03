@@ -19,6 +19,8 @@ animationMLT::animationMLT()
     removeKF(an);
 
     editKFValue(pr, an, 99, 122);
+
+    editKFPosition(pr, an, 50, 49);
 }
 
 void animationMLT::addKF(Properties p)
@@ -49,6 +51,17 @@ void animationMLT::editKFValue(Properties p, Animation a, int position, int valu
 
     p.anim_set("foo", value, position, 0, mlt_keyframe_smooth);
     qDebug() << "KF at" << position << ", its value changed from " << oldValue << "to " << p.anim_get_int("foo", position);
+
+    printString(a);
+}
+
+void animationMLT::editKFPosition(Properties p, Animation a, int oldPos, int newPos)
+{
+    // Edits the position of keyframe
+    p.anim_set("foo", p.anim_get_int("foo", oldPos), newPos, 0, a.keyframe_type(oldPos));
+    qDebug() << "KF at" << oldPos << "shifted to" << newPos;
+
+    a.remove(oldPos);
 
     printString(a);
 }

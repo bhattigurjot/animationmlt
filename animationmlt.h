@@ -16,6 +16,7 @@ public:
     void addKF(Properties p);
     void removeKF(Animation a);
     void editKFValue(Properties p, Animation a, int position, int value);
+    void editKFPosition(Properties p, Animation a, int oldPos, int newPos);
     QString getKFType(Animation a, int index);
 };
 
