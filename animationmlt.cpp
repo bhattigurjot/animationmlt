@@ -14,15 +14,11 @@ animationMLT::animationMLT()
 
     addKF(pr);
 
-    printOutput(pr, an);
+    printString(an);
 
     removeKF(an);
 
-    printOutput(pr, an);
-
     editKFValue(pr, an, 99, 122);
-
-    printOutput(pr, an);
 }
 
 void animationMLT::addKF(Properties p)
@@ -42,6 +38,8 @@ void animationMLT::removeKF(Animation a)
 
     a.remove(position);
     qDebug() << "KF at Index 2 removed";
+
+    printString(a);
 }
 
 void animationMLT::editKFValue(Properties p, Animation a, int position, int value)
@@ -51,6 +49,8 @@ void animationMLT::editKFValue(Properties p, Animation a, int position, int valu
 
     p.anim_set("foo", value, position, 0, mlt_keyframe_smooth);
     qDebug() << "KF at" << position << ", its value changed from " << oldValue << "to " << p.anim_get_int("foo", position);
+
+    printString(a);
 }
 
 QString animationMLT::getKFType(Animation a, int index)
@@ -71,7 +71,7 @@ QString animationMLT::getKFType(Animation a, int index)
 void animationMLT::printOutput(Properties p, Animation a)
 {
     // Prints Info
-    qDebug() << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+
     qDebug() << "Total Length of Animation:" << a.length();
     qDebug() << "No. of KFs:" <<a.key_count();
 
@@ -84,6 +84,12 @@ void animationMLT::printOutput(Properties p, Animation a)
         pos++;
     }
 
+
+}
+
+void animationMLT::printString(Animation a)
+{
+    qDebug() << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     qDebug() << "New Animation String" << a.serialize_cut(-1, -1);
     qDebug() << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 }

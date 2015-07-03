@@ -12,6 +12,7 @@ class animationMLT
 public:
     animationMLT();
     void printOutput(Properties p, Animation a);
+    void printString(Animation a);
     void addKF(Properties p);
     void removeKF(Animation a);
     void editKFValue(Properties p, Animation a, int position, int value);
